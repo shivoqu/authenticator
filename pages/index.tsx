@@ -1,5 +1,4 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 
 export default function Home() {
@@ -13,17 +12,33 @@ export default function Home() {
 
       <main className={styles.main}>
         <div className={styles.grid}>
-          <a className={styles.card}>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dicta fugit distinctio animi laudantium expedita?</a>
-          <a className={styles.card}>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ullam tenetur minima, consequatur dignissimos quod? </a>
-          <a className={styles.card}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore ullam vel nihil cupiditate, id saepe inventore officia.</a>
-          <a className={styles.card}>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cumque aspernatur adipisci quibusdam rem illo ut vero.</a>
-          <a className={styles.card}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum earum explicabo aspernatur accusamus?</a>
-          <a className={styles.card}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero cumque corporis ratione nihil maxime reprehenderit nulla.</a>
+          <div tabIndex={0} className={styles.card}>
+            <h1>JWT LOGO HERE</h1>
+            <h2><span>JWT</span> Authentication</h2>
+
+            <label>User name
+              <input type="text" name="jwt-user-name" id="jwt-user-name" />
+            </label>
+
+            <label>Password
+              <input type="password" name="jwt-user-password" id="jwt-user-password" />
+            </label>
+
+            <p>
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+              Sequi laborum nobis facilis numquam fuga facere neque possimus
+              suscipit quod consequuntur nam dolorum laboriosam maxime dolor
+            </p>
+
+          </div>
+
+          
+
         </div>
       </main>
 
       <footer className={styles.footer}>
-          <small>&copy;Copyright 2022, Ivan Budiakov. All Rights Reserved</small>
+        <small>&copy;Copyright 2022, Ivan Budiakov. All Rights Reserved</small>
       </footer>
     </div>
   )
