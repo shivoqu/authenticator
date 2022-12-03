@@ -2,12 +2,13 @@
 import styles from "../../styles/LoginCard.module.css";
 import TextField from '@mui/material/TextField';
 import { Button } from "@mui/material";
+import UserForm from "../../lib/UserForm";
 
 function Jwt() {
     return (
         <div tabIndex={0} className={styles.card}>
             <h1><span>JWT</span> Authentication</h1>
-
+{/* 
             <TextField
                 name="jwt-user-name"
                 id="jwt-user-name"
@@ -34,7 +35,9 @@ function Jwt() {
                 color="primary"
                 size="large"
             >Login
-            </Button>
+            </Button> */}
+
+            <UserForm />
 
         </div>
 
