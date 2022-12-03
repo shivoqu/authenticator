@@ -1,0 +1,9 @@
+.card{
+    display: block;
+    padding: 2rem;
+    max-width: 25rem;
+}
+
+.card>TextField{
+    margin: 2rem;
+}

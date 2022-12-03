@@ -1,5 +1,7 @@
 import Head from 'next/head'
+import Link from 'next/link'
 import styles from '../styles/Home.module.css'
+import cardStyles from '../styles/Card.module.css'
 
 export default function Home() {
   return (
@@ -10,30 +12,13 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
+      <header className={styles.header} ><h1 style={{margin: 0}}>Authenticator</h1></header>
+
       <main className={styles.main}>
         <div className={styles.grid}>
-          <div tabIndex={0} className={styles.card}>
-            <h1>JWT LOGO HERE</h1>
-            <h2><span>JWT</span> Authentication</h2>
-
-            <label>User name
-              <input type="text" name="jwt-user-name" id="jwt-user-name" />
-            </label>
-
-            <label>Password
-              <input type="password" name="jwt-user-password" id="jwt-user-password" />
-            </label>
-
-            <p>
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-              Sequi laborum nobis facilis numquam fuga facere neque possimus
-              suscipit quod consequuntur nam dolorum laboriosam maxime dolor
-            </p>
-
-          </div>
-
-          
-
+          <Card title='JWT' logo='🌸' desc='lorem ipsum dolor alpha JWT' />
+          <Card title='Auth0' logo='⭐' desc='lorem ipsum dolor alpha Auth0' />
+          <Card title='Cookies' logo='🍪' desc='lorem ipsum dolor tasty cookies' />
         </div>
       </main>
 
@@ -41,5 +26,17 @@ export default function Home() {
         <small>&copy;Copyright 2022, Ivan Budiakov. All Rights Reserved</small>
       </footer>
     </div>
+  )
+}
+
+function Card({ title, logo, desc }: { title: string, logo: string, desc: string }) {
+  return (
+    <Link href={'/' + title.toLowerCase()} className={cardStyles.card}>
+      <h2>
+        <span>{logo + ' '}</span>{title}
+      </h2>
+
+      <p>{desc}</p>
+    </Link>
   )
 }

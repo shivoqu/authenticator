@@ -1,6 +1,5 @@
 .main {
-  min-height: 100vh;
-  padding: 4rem 0;
+  min-height: 100vh;  
   flex: 1;
   display: flex;
   flex-direction: row;
@@ -8,11 +7,18 @@
   align-items: center;
 }
 
+.header {
+  padding : calc(50vh - 2rem) 0; 
+  width: 100%;
+  text-align: center;
+  font-size: 2rem;
+}
+
+
 .footer {
-  margin-top: -5.5rem;
   text-align: center;
   padding: 2rem 0;
-  border-top: 1px solid #eaeaea;
+  border-top: 1px solid #222;
 }
 
 .grid {
@@ -23,65 +29,6 @@
   max-width: 800px;
 }
 
-.card {
-  margin: 1rem;
-  padding: 2rem 3rem;
-  text-align: left;
-  /* color: inherit; */
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 15px;
-  transition: color .15s ease, 
-    border-color 0.15s ease, 
-    scale .15s ease-in-out, 
-    border .15s ease;
-  max-width: 300px;
-  color: #444;
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-}
-
-.card>label>input{
-  padding: .5rem;
-  font-size: 1rem;
-  transition: width .4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
-  width: 70%;
-  border-radius: 10px;
-}
-
-.card>label>input:focus{
-  width: calc(100% - 2rem);
-}
-
-.card:hover,
-.card:focus,
-.card:active {
-  position: relative;
-  /* top : -15px; */
-  color: #fff;
-  box-shadow:
-    inset 0 0 60px whitesmoke,
-    inset 20px 0 80px #f0f,
-    inset -20px 0 80px #0ff,
-    inset 20px 0 300px #f0f,
-    inset -20px 0 300px #0ff,
-    0 0 50px #fff,
-    -10px 0 80px #f0f,
-    10px 0 80px #0ff;
-  border-color: rgba(255, 255, 255, .6);
-}
-
-.card h2 {
-  margin: 0 0 1rem 0;
-  font-size: 2rem;
-  white-space: nowrap;
-}
-
-.card>label {
-  margin: 0;
-  font-size: 1.2rem;
-  line-height: 1.15;
-}
 
 
 @media (max-width: 600px) {
@@ -92,10 +39,5 @@
 }
 
 @media (prefers-color-scheme: dark) {
-
-  .card,
-  .footer {
-    border-color: #222;
-  }
 
 }
