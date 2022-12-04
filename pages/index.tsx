@@ -12,7 +12,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <header className={styles.header} ><h1 style={{margin: 0}}>Authenticator</h1></header>
+      <header className={styles.header} ><h1 className='text-7xl' >Authenticator</h1></header>
 
       <main className={styles.main}>
         <div className={styles.grid}>
@@ -22,7 +22,7 @@ export default function Home() {
         </div>
       </main>
 
-      <footer className={styles.footer}>
+      <footer className='text-center p-8 border-t'>
         <small>&copy;Copyright 2022, Ivan Budiakov. All Rights Reserved</small>
       </footer>
     </div>
