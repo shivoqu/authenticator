@@ -12,10 +12,10 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <header className={styles.header} ><h1 className='text-7xl' >Authenticator</h1></header>
+      <header className={styles.header} ><h1 className='text-7xl text-center ' >Authenticator</h1></header>
 
-      <main className={styles.main}>
-        <div className={styles.grid}>
+      <main className='min-h-screen flex justify-center items-center flex-1 '>
+        <div className='flex items-center justify-center flex-wrap  large:max-w-2xl medium:max-w-md'>          
           <Card title='JWT' logo='🌸' desc='lorem ipsum dolor alpha JWT' />
           <Card title='Auth0' logo='⭐' desc='lorem ipsum dolor alpha Auth0' />
           <Card title='Cookies' logo='🍪' desc='lorem ipsum dolor tasty cookies' />
