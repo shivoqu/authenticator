@@ -1,18 +1,17 @@
 import Head from 'next/head'
 import Link from 'next/link'
-import styles from '../styles/Home.module.css'
 import cardStyles from '../styles/Card.module.css'
 
 export default function Home() {
   return (
-    <div className={styles.container}>
+    <div>
       <Head>
         <title>Home</title>
         <meta name="description" content="website description" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <header className={styles.header} ><h1 className='text-7xl text-center ' >Authenticator</h1></header>
+      <header><h1 className='text-7xl text-center ' >Authenticator</h1></header>
 
       <main className='min-h-screen flex justify-center items-center flex-1 '>
         <div className='flex items-center justify-center flex-wrap  large:max-w-2xl medium:max-w-md'>          
