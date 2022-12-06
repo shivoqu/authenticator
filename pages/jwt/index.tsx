@@ -1,4 +1,3 @@
-// import { getStaticProps } from "../users";
 import UserForm from "../../lib/UserForm";
 
 function Jwt() {
@@ -17,16 +16,3 @@ function Jwt() {
 }
 
 export default Jwt;
-
-//////////////////////for later reference
-
-// export const getStaticProps = async () => {
-//     const res = await fetch(`https://jsonplaceholder.typicode.com/users`);
-//     const data = await res.json();
-
-//     return {
-//         props: {
-//             users: data
-//         }
-//     }
-// }
