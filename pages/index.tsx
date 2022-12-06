@@ -1,17 +1,18 @@
 import Head from 'next/head'
 import Link from 'next/link'
 import cardStyles from '../styles/Card.module.css'
+import Jwt from './jwt'
 
 export default function Home() {
   return (
-    <div>
+    <div className='bg-black'>
       <Head>
         <title>Home</title>
         <meta name="description" content="website description" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <header><h1 className='text-7xl text-center ' >Authenticator</h1></header>
+      <header><h1 className='text-7xl text-center text-gray-500' >Authenticator</h1></header>
 
       <main className='min-h-screen flex justify-center items-center flex-1 '>
         <div className='flex items-center justify-center flex-wrap  large:max-w-2xl medium:max-w-md'>          

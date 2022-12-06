@@ -20,12 +20,12 @@ export default function UserForm() {
 
   return (
     <form
-      className="mt-4 m-auto rounded shadow-md max-w-xs px-8 pt-6 pb-8 mb-4"
+      className="mt-4 m-auto rounded shadow-md max-w-xs px-8 pt-6 pb-8 mb-4 bg-gray-900"
       onSubmit={handleSubmit}
     >
       <div className="mb-4">
         <label
-          className="block text-gray-700 text-sm font-bold mb-2"
+          className="block text-gray-300 text-sm font-bold mb-2"
           htmlFor="username"
         >
           Username
@@ -42,7 +42,7 @@ export default function UserForm() {
 
       <div className="mb-6">
         <label
-          className="block text-gray-700 text-sm font-bold mb-2"
+          className="block text-gray-300 text-sm font-bold mb-2"
           htmlFor="password"
         >
           Password
