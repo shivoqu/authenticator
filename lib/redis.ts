@@ -1,5 +1,5 @@
 import { Client, Entity, Schema } from 'redis-om';
-
+import { checkPassword } from './passHash';
 
 const client = new Client();
 
@@ -28,7 +28,7 @@ export async function createUser(data : any) {
     const repo = client.fetchRepository(schema);
     const user = repo.createEntity(data);
     const id = await repo.save(user);
-
+    
     return id;
     
 }
