@@ -50,7 +50,7 @@ export default function Home() {
   );
 }
 
-function Card({
+export function Card({
   title,
   logo,
   desc,

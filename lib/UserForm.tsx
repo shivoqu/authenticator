@@ -1,25 +1,44 @@
+import { useRef } from "react";
+
 export default function UserForm() {
+  const formRef = useRef<any>();
   const handleSubmit = async (e: any) => {
     e.preventDefault();
 
-    const form = new FormData(e.target);
+    const form = new FormData(formRef.current);
     const formData = Object.fromEntries(form.entries());
 
-    const res = await fetch("/api/users", {
-      body: JSON.stringify(formData),
-      headers: {
-        "Content-type": "application/json",
-      },
-      method: "POST",
-    });
-    const result = await res.json();
-    console.log(result);
+    if (e.target.name === "signup") {
+      console.log('you clicked signup');      
+      const res = await fetch("/api/users", {
+        body: JSON.stringify(formData),
+        headers: {
+          "Content-type": "application/json",
+        },
+        method: "POST",
+      });
+      const result = await res.json();
+      console.log(result);
+    } 
+    else if (e.target.name === "login"){
+      console.log('you clicked login');
+      
+      const res = await fetch("/api/auth", {
+        body: JSON.stringify(formData),
+        headers: {
+          "Content-type": "application/json",
+        },
+        method: "POST",
+      });
+      const result = await res.json();
+      console.log(result);
+    }
   };
 
   return (
     <form
       className="mt-4 m-auto border border-gray-300/25 rounded-lg shadow-md max-w-lg px-8 pt-6 pb-8 mb-4 bg-gray-900"
-      onSubmit={handleSubmit}
+      onSubmit={handleSubmit} ref={formRef} 
     >
       <div className="mb-4">
         <label
@@ -61,12 +80,26 @@ export default function UserForm() {
           <p className="bg-gray-900 px-2 text-gray-500">Or sign in with</p>
         </div>
       </div>
-      <div className="flex w-full">
+      <div className="flex w-full mb-2">
         <button
-          className="px-6 m-auto w-full font-bold py-2 bg-gradient-to-r from-blue-500 to-purple-500 hover:bg-blue-700 text-white rounded-md outline-offset-0  focus:outline-blue-500"
+          className="px-6 m-auto w-full font-bold py-2 bg-gradient-to-r from-blue-500 to-purple-500 hover:bg-blue-700 
+          text-white rounded-md outline-offset-0  focus:outline-blue-500"
           type="submit"
+          name="signup"
+          onClick={e => formRef.current.name = 'signup' }
         >
-          Sign In
+          Sign Up
+        </button>
+      </div>
+      <div className="flex w-full mb-2">
+        <button
+          className="px-6 m-auto w-full font-bold py-2 bg-gradient-to-r from-blue-500 to-purple-500 hover:bg-blue-700 
+          text-white rounded-md outline-offset-0  focus:outline-blue-500"
+          type="submit"
+          name="login"
+          onClick={e => formRef.current.name = 'login' }
+        >
+          Login
         </button>
       </div>
     </form>
