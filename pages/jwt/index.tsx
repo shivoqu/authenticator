@@ -1,4 +1,4 @@
-import UserForm from "../../lib/UserForm";
+import UserForm from "../../ui/UserForm";
 
 function Jwt() {
     return (
