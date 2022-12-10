@@ -1,45 +1,72 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import Head from "next/head";
+import Link from "next/link";
+import cardStyles from "../styles/Card.module.css";
 
 export default function Home() {
   return (
-    <div className={styles.container}>
+    <div className="bg-gradient-to-b from-neutral-900 to-indigo-900">
       <Head>
         <title>Home</title>
         <meta name="description" content="website description" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={styles.main}>
-        <div className={styles.grid}>
-          <div tabIndex={0} className={styles.card}>
-            <h1>JWT LOGO HERE</h1>
-            <h2><span>JWT</span> Authentication</h2>
+      <header>
+        <h1 className="text-7xl text-center text-gray-500">Authenticator</h1>
+      </header>
 
-            <label>User name
-              <input type="text" name="jwt-user-name" id="jwt-user-name" />
-            </label>
+      <main className="min-h-screen flex justify-center items-center flex-1 ">
+        <div className="flex items-center justify-center flex-wrap  large:max-w-2xl medium:max-w-md">
+          <Card title="JWT" logo="🌸" desc="lorem ipsum dolor alpha JWT" />
+          <Card title="Auth0" logo="⭐" desc="lorem ipsum dolor alpha Auth0" />
+          <Card
+            title="Cookies"
+            logo="🍪"
+            desc="lorem ipsum dolor tasty cookies"
+          />
 
-            <label>Password
-              <input type="password" name="jwt-user-password" id="jwt-user-password" />
-            </label>
-
+          <div
+            className="px-12 py-8 m-4 text-left max-w-xs text-neutral-600 
+            bg-purple-800 rounded-2xl bg-clip-padding backdrop-filter
+            backdrop-blur-md bg-opacity-20 border border-gray-600 relative 
+            
+            hover:text-white hover:scale-110 hover:border-gray-50"
+          >
+            <h2 className="mb-4 text-3xl whitespace-no-wrap">
+              <span>🌸</span>
+              title
+            </h2>
             <p>
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-              Sequi laborum nobis facilis numquam fuga facere neque possimus
-              suscipit quod consequuntur nam dolorum laboriosam maxime dolors
+              Lorem, ipsum dolor sit amet consectetur adipisicing 
             </p>
-
           </div>
-
-          
-
         </div>
       </main>
 
-      <footer className={styles.footer}>
+      <footer className="text-center p-8 border-t">
         <small>&copy;Copyright 2022, Ivan Budiakov. All Rights Reserved</small>
       </footer>
     </div>
-  )
+  );
+}
+
+function Card({
+  title,
+  logo,
+  desc,
+}: {
+  title: string;
+  logo: string;
+  desc: string;
+}) {
+  return (
+    <Link href={"/" + title.toLowerCase()} className={cardStyles.card}>
+      <h2 className="mb-4 text-3xl whitespace-no-wrap">
+        <span>{logo + " "}</span>
+        {title}
+      </h2>
+
+      <p>{desc}</p>
+    </Link>
+  );
 }
