@@ -10,9 +10,7 @@ export default async function handler(
   }
 
   const { username, password } = req.body;
-  console.log(username, password);
-  
-  
+    
   const isLoggedIn = await login({ username, password });
   res.status(200).json({ isLoggedIn });
 }

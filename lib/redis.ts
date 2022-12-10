@@ -28,14 +28,23 @@ let schema = new Schema(
 
 export async function createUser(data: any) {
   await connect();
+  let users: User[] = [];
   const repo = client.fetchRepository(schema);
-  const user = repo.createEntity(data);
-  const id = await repo.save(user);
 
-  return id;
+  users = await repo.search().where("username").equals(data.username).return.all();
+
+  if (users.length > 0) {
+    throw new Error("User already exists");
+  }
+  else {
+    const user = repo.createEntity(data);
+    const id = await repo.save(user);
+  
+    return id;
+  }
+
 }
 
-// create next api function to login user with redis
 export async function login({
   username,
   password,
@@ -48,8 +57,11 @@ export async function login({
   const repo = client.fetchRepository(schema);
   await repo.createIndex();
 
-
-  const users : User [] = await repo.search().where('username').equals(username).return.all();
+  const users: User[] = await repo
+    .search()
+    .where("username")
+    .equals(username)
+    .return.all();
 
   const user = users.find((user) => user.username === username);
 
