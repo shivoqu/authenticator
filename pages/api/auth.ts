@@ -13,6 +13,6 @@ export default async function handler(
   console.log(username, password);
   
   
-  const user = await login({ username, password });
-  res.status(200).json({ user });
+  const isLoggedIn = await login({ username, password });
+  res.status(200).json({ isLoggedIn });
 }

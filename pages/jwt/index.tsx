@@ -2,7 +2,7 @@ import UserForm from "../../lib/UserForm";
 
 function Jwt() {
     return (
-    <main className="flex w-full h-screen bg-gradient-to-b from-neutral-900 to-indigo-900">
+    <main className="flex h-screen bg-gradient-to-b from-neutral-900 to-indigo-900">
       <div className="left w-1/2">
         <h1 className="text-center text-gray-300 font-bold text-3xl">JWT Authentication</h1>
         <UserForm />

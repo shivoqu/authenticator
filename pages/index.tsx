@@ -17,8 +17,14 @@ export default function Home() {
 
       <main className="min-h-screen flex justify-center items-center flex-1 ">
         <div className="flex items-center justify-center flex-wrap  large:max-w-2xl medium:max-w-md">
-          <Card title="JWT" logo="🌸" desc="lorem ipsum dolor alpha JWT" />
-          <Card title="Auth0" logo="⭐" desc="lorem ipsum dolor alpha Auth0" />
+          <Card 
+            title="JWT" 
+            logo="🌸" 
+            desc="lorem ipsum dolor alpha JWT" />
+          <Card 
+            title="Auth0" 
+            logo="⭐" 
+            desc="lorem ipsum dolor alpha Auth0" />
           <Card
             title="Cookies"
             logo="🍪"
@@ -36,9 +42,7 @@ export default function Home() {
               <span>🌸</span>
               title
             </h2>
-            <p>
-              Lorem, ipsum dolor sit amet consectetur adipisicing 
-            </p>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing</p>
           </div>
         </div>
       </main>

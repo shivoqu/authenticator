@@ -9,8 +9,11 @@ async function connect() {
   }
 }
 
-class User extends Entity {}
-
+class User extends Entity {
+  username!: string;
+  password!: string;
+  isAdmin!: boolean;
+}
 let schema = new Schema(
   User,
   {
@@ -41,13 +44,15 @@ export async function login({
   password: string;
 }) {
   await connect();
-  const user = search(username);
+  //search for user in redis
+  const repo = client.fetchRepository(schema);
+  const user: User = await repo.fetch("01GKX9QS12GRFT5AQJ8KJG0MFW");
 
   if (user) {
-    // if (await checkPassword(password, user.password)) 
-    return user;
+    if (await checkPassword(password, user.password)) return true;
   }
-  return user;
+
+  return false;
 }
 
 function search(username: string) {
