@@ -46,7 +46,12 @@ export async function login({
   await connect();
   //search for user in redis
   const repo = client.fetchRepository(schema);
-  const user: User = await repo.fetch("01GKX9QS12GRFT5AQJ8KJG0MFW");
+  await repo.createIndex();
+
+
+  const users : User [] = await repo.search().where('username').equals(username).return.all();
+
+  const user = users.find((user) => user.username === username);
 
   if (user) {
     if (await checkPassword(password, user.password)) return true;
