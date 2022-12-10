@@ -28,21 +28,24 @@ let schema = new Schema(
 
 export async function createUser(data: any) {
   await connect();
-  let users: User[] = [];
+  
   const repo = client.fetchRepository(schema);
+  await repo.createIndex();
 
-  users = await repo.search().where("username").equals(data.username).return.all();
+  const users : User[] = await repo
+    .search()
+    .where("username")
+    .equals(data.username)
+    .return.all();
 
   if (users.length > 0) {
     throw new Error("User already exists");
-  }
+  } 
   else {
     const user = repo.createEntity(data);
     const id = await repo.save(user);
-  
     return id;
   }
-
 }
 
 export async function login({
