@@ -12,5 +12,8 @@ export default async function handler(
   const { username, password } = req.body;
     
   const isLoggedIn = await login({ username, password });
-  res.status(200).json({ isLoggedIn });
+  if( await isLoggedIn )
+    res.status(200).json({ isLoggedIn });
+  else
+    res.status(401).json({ error : "Invalid username or password" });
 }

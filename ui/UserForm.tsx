@@ -19,6 +19,7 @@ export default function UserForm() {
         method: "POST",
       });
       const result = await res.json();
+      (await result.error) ? setError(result.error) : setError(null);
       console.log(result);
     } else if (e.target.name === "login") {
       const res = await fetch("/api/auth", {
@@ -29,7 +30,7 @@ export default function UserForm() {
         method: "POST",
       });
       const result = await res.json();
-      result.error ? setError(result.error) : setError(null);
+      (await result.error) ? setError(result.error) : setError(null);
       console.log(result);
     }
   };
@@ -49,23 +50,23 @@ export default function UserForm() {
         </label>
         <input
           className="bg-gray-800/50 shadow border text-md border-gray-300/50 
-          rounded-md px-4 py-3 w-full text-gray-300 leading-tight  focus:border-transparent"
-          id="username"
+          rounded-md px-4 py-3 w-full text-gray-300 leading-tight focus:bg-gray-700/50 focus:border-transparent"
           type="text"
           name="username"
           required
         />
       </div>
 
-      {error && ( 
-        <div className="bg-red-500/50 border border-red-500/50 text-red-500/50
-        rounded-md px-4 py-3 w-full text-md font-medium mb-4">
+      {error && (
+        <div
+          className="bg-red-500/10 border border-red-500/70 text-red-500/70
+        rounded-md px-4 py-2 w-full text-md font-medium mb-4"
+        >
           {error}
         </div>
       )}
 
-
-      <div className="mb-6">
+      <div className="mb-4">
         <label
           className="block text-gray-300 text-md font-bold mb-2"
           htmlFor="password"
@@ -74,12 +75,13 @@ export default function UserForm() {
         </label>
         <input
           className="bg-gray-800/50 shadow border text-md border-gray-300/50 
-          rounded-md px-4 py-3 w-full text-gray-300 leading-tight  focus:border-transparent"
+          rounded-md px-4 py-3 w-full text-gray-300 leading-tight  focus:border-transparent focus:bg-gray-700/50"
           type="password"
           name="password"
           required
         />
       </div>
+
       <div className="relative mb-8">
         <div className="absolute inset-0 flex items-center">
           <div className="w-full border-t border-gray-300"></div>
