@@ -1,7 +1,9 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 export default function UserForm() {
   const formRef = useRef<any>();
+  const [error, setError] = useState(null);
+
   const handleSubmit = async (e: any) => {
     e.preventDefault();
 
@@ -9,7 +11,6 @@ export default function UserForm() {
     const formData = Object.fromEntries(form.entries());
 
     if (e.target.name === "signup") {
-      console.log('you clicked signup');      
       const res = await fetch("/api/users", {
         body: JSON.stringify(formData),
         headers: {
@@ -19,10 +20,7 @@ export default function UserForm() {
       });
       const result = await res.json();
       console.log(result);
-    } 
-    else if (e.target.name === "login"){
-      console.log('you clicked login');
-      
+    } else if (e.target.name === "login") {
       const res = await fetch("/api/auth", {
         body: JSON.stringify(formData),
         headers: {
@@ -31,6 +29,7 @@ export default function UserForm() {
         method: "POST",
       });
       const result = await res.json();
+      result.error ? setError(result.error) : setError(null);
       console.log(result);
     }
   };
@@ -38,7 +37,8 @@ export default function UserForm() {
   return (
     <form
       className="mt-4 m-auto border border-gray-300/25 rounded-lg shadow-md max-w-lg px-8 pt-6 pb-8 mb-4 bg-gray-900"
-      onSubmit={handleSubmit} ref={formRef} 
+      onSubmit={handleSubmit}
+      ref={formRef}
     >
       <div className="mb-4">
         <label
@@ -56,6 +56,14 @@ export default function UserForm() {
           required
         />
       </div>
+
+      {error && ( 
+        <div className="bg-red-500/50 border border-red-500/50 text-red-500/50
+        rounded-md px-4 py-3 w-full text-md font-medium mb-4">
+          {error}
+        </div>
+      )}
+
 
       <div className="mb-6">
         <label
@@ -86,7 +94,7 @@ export default function UserForm() {
           text-white rounded-md outline-offset-0  focus:outline-blue-500"
           type="submit"
           name="signup"
-          onClick={e => formRef.current.name = 'signup' }
+          onClick={(e) => (formRef.current.name = "signup")}
         >
           Sign Up
         </button>
@@ -97,7 +105,7 @@ export default function UserForm() {
           text-white rounded-md outline-offset-0  focus:outline-blue-500"
           type="submit"
           name="login"
-          onClick={e => formRef.current.name = 'login' }
+          onClick={(e) => (formRef.current.name = "login")}
         >
           Login
         </button>

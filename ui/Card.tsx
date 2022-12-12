@@ -12,7 +12,7 @@ export default function Card({
   }) {
     return (
       <Link href={"/" + title.toLowerCase()} className={cardStyles.card}>
-        <h2 className="mb-4 text-3xl whitespace-no-wrap">
+        <h2 className="tracking-wide mb-4 text-3xl whitespace-no-wrap">
           <span>{logo + " "}</span>
           {title}
         </h2>

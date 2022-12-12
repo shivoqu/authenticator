@@ -39,7 +39,7 @@ export async function createUser(data: any) {
     .return.all();
 
   if (users.length > 0) {
-    throw new Error("User already exists");
+    throw new Error("username taken");
   } 
   else {
     const user = repo.createEntity(data);
