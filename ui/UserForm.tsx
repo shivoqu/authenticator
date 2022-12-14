@@ -37,7 +37,7 @@ export default function UserForm() {
 
   return (
     <form
-      className="mt-4 m-auto border border-gray-300/25 rounded-lg shadow-md max-w-lg px-8 pt-6 pb-8 mb-4 bg-gray-900"
+      className="mt-4 m-auto border border-gray-300/10 rounded-lg shadow-md max-w-lg px-8 pt-6 pb-8 mb-4 bg-gray-900"
       onSubmit={handleSubmit}
       ref={formRef}
     >
