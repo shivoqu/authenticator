@@ -1,8 +1,9 @@
 import Card from "../ui/Card";
+import Layout from "./layout";
 
 export default function Page() {
   return (
-    <>
+    // <Layout>
       <div className="flex items-center justify-center flex-wrap  large:max-w-2xl medium:max-w-md">
         <Card
           title="JWT"
@@ -20,6 +21,6 @@ export default function Page() {
           desc="A unique identifier is created on the server-side."
         />
       </div>
-    </>
+    // </Layout>
   );
 }
