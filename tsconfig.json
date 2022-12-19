@@ -28,12 +28,8 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "pages/api/users.ts",
     "next.config.js",
     "tailwind.config.js",
-    "pages/_app.tsx",
-    "pages/_app.tsx",
-    "pages/index.tsx",
     ".next/types/**/*.ts"
   ],
   "exclude": [
