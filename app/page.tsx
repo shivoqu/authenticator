@@ -1,10 +1,22 @@
 import Card from "../ui/Card";
-import Layout from "./layout";
 
 export default function Page() {
   return (
-    // <Layout>
-      <div className="flex items-center justify-center flex-wrap  large:max-w-2xl medium:max-w-md">
+    <>
+      <div
+        style={{ height: "calc(100vh - 6rem" }}
+        className="grid place-items-center "
+      >
+        <p className="text-8xl font-bold text-gray-300 text-center">
+          Authenticator
+        </p>
+      </div>
+      <div
+        className="flex mx-auto items-center justify-center flex-wrap  
+          large:max-w-2xl 
+          medium:max-w-lg  
+          small:max-w-md"
+      >
         <Card
           title="JWT"
           logo="🌸"
@@ -21,6 +33,6 @@ export default function Page() {
           desc="A unique identifier is created on the server-side."
         />
       </div>
-    // </Layout>
+    </>
   );
 }
