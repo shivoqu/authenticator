@@ -45,12 +45,10 @@ export default function UserForm({ handleLogin }: any) {
   };
 
   return (
-    <form onSubmit={handleSubmit} ref={formRef}>
-      <Wrapper>
+    <Wrapper>
+      <form onSubmit={handleSubmit} className="h-80 " ref={formRef}>
         {/* if logged in display success */}
-        {success && (
-          <Message type="success">Login success</Message>
-        )}
+        {success && <Message type="success">Login success</Message>}
 
         <div className="mb-4">
           <label
@@ -68,9 +66,7 @@ export default function UserForm({ handleLogin }: any) {
           />
         </div>
 
-        {error && (
-          <Message type="error">{error}</Message>
-        )}
+        {error && <Message type="error">{error}</Message>}
 
         <div className="mb-4">
           <label
@@ -88,15 +84,15 @@ export default function UserForm({ handleLogin }: any) {
           />
         </div>
 
-        <div className="relative mb-8">
+        {/* <div className="relative mb-8">
           <div className="absolute inset-0 flex items-center">
             <div className="w-full border-t border-gray-300"></div>
           </div>
           <div className="relative flex justify-center text-sm">
             <p className="bg-gray-900 px-2 text-gray-500">Or sign in with</p>
           </div>
-        </div>
-        <div className="flex w-full mb-2">
+        </div> */}
+        <div className="flex mt-8 w-full mb-2">
           <button
             className="px-6 m-auto w-full font-bold py-2 bg-gradient-to-r from-blue-500 to-purple-500 hover:bg-blue-700 
           text-white rounded-md outline-offset-0  focus:outline-blue-500"
@@ -118,7 +114,7 @@ export default function UserForm({ handleLogin }: any) {
             Login
           </button>
         </div>
-      </Wrapper>
-    </form>
+      </form>
+    </Wrapper>
   );
 }
