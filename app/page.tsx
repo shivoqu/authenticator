@@ -3,16 +3,18 @@ import Card from "../ui/Card";
 export default function Page() {
   return (
     <>
-      <div
-        style={{ height: "calc(100vh - 6rem" }}
+      <section
+        style={{ height: "calc(100vh - 12rem" }}
         className="grid place-items-center "
       >
         <p className="text-8xl font-bold text-gray-300 text-center">
           Authenticator
         </p>
-      </div>
-      <div
-        className="flex mx-auto items-center justify-center flex-wrap  
+      </section>
+      <section
+        className="flex flex-wrap  
+          mx-auto mt-56 mb-56
+          items-center justify-center 
           large:max-w-2xl 
           medium:max-w-lg  
           small:max-w-md"
@@ -32,7 +34,7 @@ export default function Page() {
           logo="🍪"
           desc="A unique identifier is created on the server-side."
         />
-      </div>
+      </section>
     </>
   );
 }

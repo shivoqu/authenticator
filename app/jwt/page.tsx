@@ -13,7 +13,7 @@ function Jwt() {
   };
 
   return (
-    <div className="flex justify-center">
+    <section className="flex justify-center">
       <div className="left">
         <h1 className="text-center text-gray-300 font-bold text-3xl">
           JWT Authentication
@@ -32,7 +32,7 @@ function Jwt() {
           Event Log
         </h1>
         <Wrapper>
-          <div className="h-80 overflow-auto">
+          <div className="h-80 overflow-auto scrollbar scrollbar-thumb-violet-900/90 scrollbar-thumb-rounded-md ">
             <Event type="POST" message="signup with username and password"/>
             <Event type="GET" message="user by username"/>
             <Event type="delete" message="account by username and password" />
@@ -44,7 +44,7 @@ function Jwt() {
           </div>
         </Wrapper>
       </div>
-    </div>
+    </section>
   );
 }
 
