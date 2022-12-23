@@ -32,7 +32,11 @@ function Jwt() {
           Event Log
         </h1>
         <Wrapper>
-          <div className="h-80 overflow-auto scrollbar scrollbar-thumb-violet-700/50 scrollbar-thumb-rounded-md ">
+          <div className="h-96 overflow-auto scrollbar scrollbar-thumb-violet-700/50 scrollbar-thumb-rounded-md ">
+            <Event type="POST" message="signup with username and password"/>
+            <Event type="GET" message="user by username"/>
+            <Event type="delete" message="account by username and password" />
+            <Event type="PUT" message="update account details"/>
             <Event type="POST" message="signup with username and password"/>
             <Event type="GET" message="user by username"/>
             <Event type="delete" message="account by username and password" />
