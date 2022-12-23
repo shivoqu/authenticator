@@ -46,9 +46,10 @@ export default function UserForm({ handleLogin }: any) {
 
   return (
     <Wrapper>
-      <form onSubmit={handleSubmit} className="h-80 " ref={formRef}>
-        {/* if logged in display success */}
+      <form onSubmit={handleSubmit} className="h-96 " ref={formRef}> 
         {success && <Message type="success">Login success</Message>}
+
+        <h2 className="text-2xl text-white text-center text-gray-300 font-bold">Sign In</h2>
 
         <div className="mb-4">
           <label
@@ -70,7 +71,7 @@ export default function UserForm({ handleLogin }: any) {
 
         <div className="mb-4">
           <label
-            className="block text-gray-300 text-md font-bold mb-2"
+            className="block text-gray-300 text-md font-medium mb-2"
             htmlFor="password"
           >
             Password
