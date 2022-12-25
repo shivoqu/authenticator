@@ -9,7 +9,7 @@ export default function Header() {
         </div>
         <div className="flex-2">
           <HeaderLink text="JWT" href="/jwt" />
-          <HeaderLink text="OAuth" href="/OAuth" />
+          <HeaderLink text="OAuth" href="/oauth" />
           <HeaderLink text="Cookies" href="/cookies" />
           <HeaderLink text="NextAuth" href="/nextauth" />
         </div>

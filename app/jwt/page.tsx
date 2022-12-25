@@ -5,13 +5,13 @@ import UserForm from "../../ui/UserForm";
 import Wrapper from "../../ui/Wrapper";
 import Event from "../../ui/Event";
 
-function Jwt() {
+export default function Jwt() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const handleLogin = () => {
     setIsLoggedIn(true);
   };
-
+  
   return (
     <section className="flex justify-center">
       <div className="left">
@@ -33,23 +33,21 @@ function Jwt() {
         </h1>
         <Wrapper>
           <div className="h-96 overflow-auto scrollbar scrollbar-thumb-violet-700/50 scrollbar-thumb-rounded-md ">
-            <Event type="POST" message="signup with username and password"/>
-            <Event type="GET" message="user by username"/>
+            <Event type="POST" message="signup with username and password" />
+            <Event type="GET" message="user by username" />
             <Event type="delete" message="account by username and password" />
-            <Event type="PUT" message="update account details"/>
-            <Event type="POST" message="signup with username and password"/>
-            <Event type="GET" message="user by username"/>
+            <Event type="PUT" message="update account details" />
+            <Event type="POST" message="signup with username and password" />
+            <Event type="GET" message="user by username" />
             <Event type="delete" message="account by username and password" />
-            <Event type="PUT" message="update account details"/>
-            <Event type="POST" message="signup with username and password"/>
-            <Event type="GET" message="user by username"/>
+            <Event type="PUT" message="update account details" />
+            <Event type="POST" message="signup with username and password" />
+            <Event type="GET" message="user by username" />
             <Event type="delete" message="account by username and password" />
-            <Event type="PUT" message="update account details"/>
+            <Event type="PUT" message="update account details" />
           </div>
         </Wrapper>
       </div>
     </section>
   );
 }
-
-export default Jwt;
