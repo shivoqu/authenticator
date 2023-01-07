@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { createUser } from "../../lib/redis";
+import { createUser } from "../../lib/mongodb";
 import { hashPassword } from "../../lib/passHash";
 
 export default async function handler(

@@ -18,7 +18,6 @@ export default function Jwt() {
         <h1 className="text-center text-gray-300 font-bold text-3xl">
           JWT Authentication
         </h1>
-        {/* display login form if not logged in */}
         {!isLoggedIn && <UserForm handleLogin={handleLogin} />}
 
         {isLoggedIn && (

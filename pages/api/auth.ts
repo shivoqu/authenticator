@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { login } from "../../lib/redis";
+import { login } from "../../lib/mongodb";
 
 export default async function handler(
   req: NextApiRequest,
