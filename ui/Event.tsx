@@ -9,9 +9,10 @@ export default function Event({
 
   return (
     <div className="flex items-center mb-4">
-      <div className="flex items-center justify-center w-8 h-8 bg-neutral-900 rounded-full">
+      <div className="flex items-center justify-center w-8 h-8 bg-neutral-800 rounded-full">
+       {/* checkamrk svg with dark gray background and grey tick */}
         <svg
-          className="w-4 h-4 text-green-500"
+          className="w-4 h-4 text-gray-400"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -24,6 +25,7 @@ export default function Event({
             d="M5 13l4 4L19 7"
           />
         </svg>
+
       </div>
       <div className="ml-2">
         <p className="text-lg text-gray-400 font-semibold">

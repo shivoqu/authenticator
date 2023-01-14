@@ -5,7 +5,7 @@ import '../styles/globals.css';
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html className="w-full" lang="en">
-      <body className="font-sans bg-gradient-to-b from-neutral-900 to-indigo-900">
+      <body className="font-sans">
         <Header />
         <main className="m-auto mt-8">
           {children}

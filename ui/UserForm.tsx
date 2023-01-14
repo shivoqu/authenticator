@@ -49,7 +49,7 @@ export default function UserForm({ handleLogin }: any) {
       <form onSubmit={handleSubmit} className="h-96 " ref={formRef}> 
         {success && <Message type="success">Login success</Message>}
 
-        <h2 className="text-2xl text-white text-center text-gray-300 font-bold">Sign In</h2>
+        <h2 className="text-2xl text-center text-gray-300 font-bold">Sign In</h2>
 
         <div className="mb-4">
           <label

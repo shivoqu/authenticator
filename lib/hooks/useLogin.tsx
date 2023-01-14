@@ -1,4 +1,4 @@
-import { JwtAuthService } from "../jwtAuthService";
+import { JwtAuthService } from "../services/jwtAuthService";
 import Cookies from "js-cookie";
 import { User } from "../../types/User";
 
