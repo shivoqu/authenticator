@@ -23,6 +23,6 @@ body {
 }
 
 ::selection {
-    background-color: rgb(41, 32, 51);
+    background-color: rgb(66, 7, 7);
     color: hsl(0deg 0% 100%);
 }
