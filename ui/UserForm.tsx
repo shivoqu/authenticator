@@ -5,8 +5,6 @@ import Wrapper from "./Wrapper";
 export default function UserForm({ handleLogin }: any) {
   const formRef = useRef<any>();
   const [error, setError] = useState(null);
-  const [success, setSuccess] = useState(false);
-  const [token, setToken] = useState<string | null>(null);
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
@@ -35,19 +33,19 @@ export default function UserForm({ handleLogin }: any) {
       });
       const result = await res.json();
       (await result.error) ? setError(result.error) : setError(null);
-      // if no error, set isLoggedIn to true
+
       if (!result.error) {
-        setToken(result.token);
-        setSuccess(true);
-        handleLogin(result.token);
+        handleLogin(result);
       }
     }
   };
 
   return (
     <Wrapper>
-      <form onSubmit={handleSubmit} className="h-96 " ref={formRef}> 
-        <h2 className="text-2xl text-center text-gray-300 font-bold">Sign In</h2>
+      <form onSubmit={handleSubmit} className="h-96 " ref={formRef}>
+        <h2 className="text-2xl text-center text-gray-300 font-bold">
+          Sign In
+        </h2>
 
         <div className="mb-4">
           <label
@@ -57,10 +55,12 @@ export default function UserForm({ handleLogin }: any) {
             Username
           </label>
           <input
-            className="bg-gray-800/50 shadow border text-md border-gray-300/50 
-          rounded-md px-4 py-3 w-full text-gray-300 leading-tight focus:bg-gray-700/50 focus:border-transparent"
+            className="bg-neutral-800/50 focus:bg-neutral-700/50
+            shadow border text-md border-gray-300/50 rounded-md 
+            px-4 py-3 w-full text-gray-300 leading-tight focus:border-transparent"
             type="text"
             name="username"
+            autoComplete="username"
             required
           />
         </div>
@@ -75,18 +75,22 @@ export default function UserForm({ handleLogin }: any) {
             Password
           </label>
           <input
-            className="bg-gray-800/50 shadow border text-md border-gray-300/50 
-          rounded-md px-4 py-3 w-full text-gray-300 leading-tight  focus:border-transparent focus:bg-gray-700/50"
+            className="bg-neutral-800/50 focus:bg-neutral-700/50
+            shadow border text-md border-gray-300/50 rounded-md 
+            px-4 py-3 w-full text-gray-300 leading-tight focus:border-transparent"
             type="password"
             name="password"
+            autoComplete="current-password"
             required
           />
         </div>
 
         <div className="flex mt-8 w-full mb-2">
           <button
-            className="px-6 m-auto w-full font-bold py-2 bg-gradient-to-r from-blue-500 to-purple-500 hover:bg-blue-700 
-          text-white rounded-md outline-offset-0  focus:outline-blue-500"
+            className="px-6 m-auto w-full font-bold py-2 text-lg
+            bg-gradient-to-r from-red-600 via-red-900 to-red-900
+            hover:py-3 focus:py-3 transition-all duration-100
+          text-white rounded-md outline-offset-0  focus:outline-red-200"
             type="submit"
             name="signup"
             onClick={(e) => (formRef.current.name = "signup")}
@@ -96,8 +100,10 @@ export default function UserForm({ handleLogin }: any) {
         </div>
         <div className="flex w-full mb-2">
           <button
-            className="px-6 m-auto w-full font-bold py-2 bg-gradient-to-r from-blue-500 to-purple-500 hover:bg-blue-700 
-          text-white rounded-md outline-offset-0  focus:outline-blue-500"
+            className="px-6 m-auto w-full font-bold py-2 text-lg
+            hover:py-3 focus:py-3 transition-all duration-100
+            bg-gradient-to-r from-red-600 via-red-900 to-red-900
+          text-white rounded-md outline-offset-0  focus:outline-red-200"
             type="submit"
             name="login"
             onClick={(e) => (formRef.current.name = "login")}

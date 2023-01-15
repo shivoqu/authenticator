@@ -3,14 +3,14 @@ import Cookies from "js-cookie";
 import { User } from "../../types/User";
 
 export const useCurrentUser = () => {
-    const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<User | null>(null);
 
-    useEffect(() => {
-        const currentUser = Cookies.get("currentUser");
-        if(currentUser){
-            setUser(JSON.parse(currentUser));
-        }
-    }, []);
+  useEffect(() => {
+    const currentUser = Cookies.get("currentUser");
+    if (currentUser) {
+      setUser(JSON.parse(currentUser));
+    }
+  }, []);
 
-    return { user };
-}
+  return { user };
+};
