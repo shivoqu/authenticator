@@ -22,7 +22,9 @@ export default function Jwt() {
 
         {isLoggedIn && (
           <Wrapper>
-            <Message type="success">Logged In successfully</Message>
+            <div className="h-96">
+              <Message type="success">Logged In successfully</Message>
+            </div>
           </Wrapper>
         )}
       </div>

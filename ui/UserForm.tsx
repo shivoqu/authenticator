@@ -6,6 +6,7 @@ export default function UserForm({ handleLogin }: any) {
   const formRef = useRef<any>();
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
+  const [token, setToken] = useState(null);
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
@@ -14,7 +15,7 @@ export default function UserForm({ handleLogin }: any) {
     const formData = Object.fromEntries(form.entries());
 
     if (e.target.name === "signup") {
-      const res = await fetch("/api/users", {
+      const res = await fetch("/api/signup", {
         body: JSON.stringify(formData),
         headers: {
           "Content-type": "application/json",
@@ -36,6 +37,7 @@ export default function UserForm({ handleLogin }: any) {
       (await result.error) ? setError(result.error) : setError(null);
       // if no error, set isLoggedIn to true
       if (!result.error) {
+        setToken(result.token);
         setSuccess(true);
         handleLogin();
       }
@@ -85,14 +87,6 @@ export default function UserForm({ handleLogin }: any) {
           />
         </div>
 
-        {/* <div className="relative mb-8">
-          <div className="absolute inset-0 flex items-center">
-            <div className="w-full border-t border-gray-300"></div>
-          </div>
-          <div className="relative flex justify-center text-sm">
-            <p className="bg-gray-900 px-2 text-gray-500">Or sign in with</p>
-          </div>
-        </div> */}
         <div className="flex mt-8 w-full mb-2">
           <button
             className="px-6 m-auto w-full font-bold py-2 bg-gradient-to-r from-blue-500 to-purple-500 hover:bg-blue-700 

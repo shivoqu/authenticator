@@ -1,6 +1,9 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { login } from "../../lib/mongodb";
 
+const jwt = require('jsonwebtoken');
+const secret = 'donttellanyone';
+
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
@@ -12,8 +15,10 @@ export default async function handler(
   const { username, password } = req.body;
     
   const isLoggedIn = await login({ username, password });
-  if( await isLoggedIn )
-    res.status(200).json({ isLoggedIn });
+  if( isLoggedIn ){
+    const token = jwt.sign({ username }, secret, { expiresIn: '1h'} );
+    res.status(200).json({ token });
+  }
   else
     res.status(401).json({ error : "Invalid username or password" });
 }
