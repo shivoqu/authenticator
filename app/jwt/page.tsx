@@ -7,9 +7,11 @@ import Event from "../../ui/Event";
 
 export default function Jwt() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [token, setToken] = useState<string | null>(null);
 
-  const handleLogin = () => {
+  const handleLogin = (token : string) => {
     setIsLoggedIn(true);
+    setToken(token);
   };
   
   return (
@@ -23,7 +25,7 @@ export default function Jwt() {
         {isLoggedIn && (
           <Wrapper>
             <div className="h-96">
-              <Message type="success">Logged In successfully</Message>
+              <Message type="success">Login token: {token?.slice(0,32) + '...'}</Message>
             </div>
           </Wrapper>
         )}

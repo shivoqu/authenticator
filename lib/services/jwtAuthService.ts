@@ -12,7 +12,7 @@ export default class JwtAuthService {
 
   login = (username: string, password: string) => {
     return this.instance
-      .post("/api/auth", {
+      .post("/api/login", {
         username,
         password,
       })

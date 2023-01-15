@@ -4,7 +4,7 @@ export default function Head() {
       <title>Authenticator</title>
       <meta
         name="description"  
-        content="A playground to explore different types of authentication/authorization
+        content="A playground to explore different types of auth
             using different services in educational purposes."
         key="description"
       />

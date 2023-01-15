@@ -6,7 +6,7 @@ export default function UserForm({ handleLogin }: any) {
   const formRef = useRef<any>();
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
-  const [token, setToken] = useState(null);
+  const [token, setToken] = useState<string | null>(null);
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
@@ -26,7 +26,7 @@ export default function UserForm({ handleLogin }: any) {
       (await result.error) ? setError(result.error) : setError(null);
       console.log(result);
     } else if (e.target.name === "login") {
-      const res = await fetch("/api/auth", {
+      const res = await fetch("/api/login", {
         body: JSON.stringify(formData),
         headers: {
           "Content-type": "application/json",
@@ -39,18 +39,14 @@ export default function UserForm({ handleLogin }: any) {
       if (!result.error) {
         setToken(result.token);
         setSuccess(true);
-        handleLogin();
+        handleLogin(result.token);
       }
-
-      console.log(result);
     }
   };
 
   return (
     <Wrapper>
       <form onSubmit={handleSubmit} className="h-96 " ref={formRef}> 
-        {success && <Message type="success">Login success</Message>}
-
         <h2 className="text-2xl text-center text-gray-300 font-bold">Sign In</h2>
 
         <div className="mb-4">
