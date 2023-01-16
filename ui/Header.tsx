@@ -7,7 +7,7 @@ export default function Header() {
         <div className="flex-2">
           <HeaderLink text="Home" href="/" />
         </div>
-        <div className="flex-2">
+        <div className="flex-2 gap-2">
           <HeaderLink text="JWT" href="/jwt" />
           <HeaderLink text="OAuth" href="/oauth" />
           <HeaderLink text="Cookies" href="/cookies" />

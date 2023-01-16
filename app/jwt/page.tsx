@@ -5,6 +5,7 @@ import UserForm from "../../ui/UserForm";
 import Wrapper from "../../ui/Wrapper";
 import Event from "../../ui/Event";
 import Cookies from "js-cookie";
+import { useCurrentUser } from "../../lib/hooks/useCurrentUser";
 
 export default function Jwt() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -13,10 +14,20 @@ export default function Jwt() {
   const login = (result: any) => {
     setIsLoggedIn(true);
     setToken(result.token);
-    Cookies.set("currentUser", JSON.stringify(result));
-    console.log("----------------------");
-    console.log(Cookies.get("currentUser"));
+
+
+    // Cookies.set("currentUser", JSON.stringify(result));
   };
+
+  const logout = () => {
+    setIsLoggedIn(false);
+    setToken(null);
+    Cookies.remove("currentUser");
+    console.warn(Cookies.get("currentUser"));
+
+  };
+
+  console.log(Cookies.get("currentUser"));
 
   return (
     <section
@@ -33,8 +44,22 @@ export default function Jwt() {
           <Wrapper>
             <div className="h-96">
               <Message type="success">
-                Login token: {token?.slice(0, 32) + "..."}
+                Login token:
+                {/* {token?.slice(0, 32) + "..."} */}
+                <p>{token}</p>
               </Message>
+              <button
+                className="px-6 m-auto w-full font-bold py-2 text-lg
+            hover:py-3 focus:py-3 transition-all duration-100
+            bg-gradient-to-r from-red-700 via-red-900 to-red-900
+          hover:from-red-900 hover:via-red-900 hover:to-red-700
+          text-white rounded-md outline-offset-0  focus:outline-red-200"
+                type="submit"
+                name="login"
+                onClick={() => logout}
+              >
+                Logout
+              </button>
             </div>
           </Wrapper>
         )}
@@ -45,8 +70,11 @@ export default function Jwt() {
         </h1>
         <Wrapper>
           <div className="h-96 overflow-auto scrollbar scrollbar-thumb-neutral-700/50 scrollbar-thumb-rounded-md ">
-            <Event type="POST" message="signup with username and password" />
-            <Event type="GET" message="user by username" />
+            { isLoggedIn }
+            <Event type="POST" message={"Logged in as " + useCurrentUser().user?.username}/>
+            
+            
+            {/* <Event type="GET" message="user by username" />
             <Event type="delete" message="account by username and password" />
             <Event type="PUT" message="update account details" />
             <Event type="POST" message="signup with username and password" />
@@ -56,7 +84,7 @@ export default function Jwt() {
             <Event type="POST" message="signup with username and password" />
             <Event type="GET" message="user by username" />
             <Event type="delete" message="account by username and password" />
-            <Event type="PUT" message="update account details" />
+            <Event type="PUT" message="update account details" /> */}
           </div>
         </Wrapper>
       </div>
