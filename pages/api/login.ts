@@ -16,7 +16,8 @@ export default async function handler(
 
   const isLoggedIn = await login({ username, password });
   if (isLoggedIn) {
-    const token = jwt.sign({ username }, secret, { expiresIn: "1h" });
-    res.status(200).json({username, token, expiresIn: "1h" });
+    const expIn = '15m' 
+    const token = jwt.sign({ username }, secret, { expiresIn: expIn });
+    res.status(200).json({username, token, expiresIn: expIn });
   } else res.status(401).json({ error: "Invalid username or password" });
 }

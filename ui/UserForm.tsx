@@ -1,4 +1,5 @@
 import { useRef, useState } from "react";
+import Button from "./Button";
 import Message from "./Message";
 import Wrapper from "./Wrapper";
 
@@ -86,32 +87,16 @@ export default function UserForm({ handleLogin }: any) {
         </div>
 
         <div className="flex mt-8 w-full mb-2">
-          <button
-            className="px-6 m-auto w-full font-bold py-2 text-lg
-            bg-gradient-to-r from-red-700 via-red-900 to-red-900
-          hover:from-red-900 hover:via-red-900 hover:to-red-700
-            hover:py-3 focus:py-3 transition-all duration-100
-          text-white rounded-md outline-offset-0  focus:outline-red-200"
-            type="submit"
-            name="signup"
-            onClick={(e) => (formRef.current.name = "signup")}
-          >
-            Sign Up
-          </button>
+          <Button
+            name="Login"
+            onClick={() => (formRef.current.name = "login")}
+          />
         </div>
         <div className="flex w-full mb-2">
-          <button
-            className="px-6 m-auto w-full font-bold py-2 text-lg
-            hover:py-3 focus:py-3 transition-all duration-100
-            bg-gradient-to-r from-red-700 via-red-900 to-red-900
-          hover:from-red-900 hover:via-red-900 hover:to-red-700
-          text-white rounded-md outline-offset-0  focus:outline-red-200"
-            type="submit"
-            name="login"
-            onClick={(e) => (formRef.current.name = "login")}
-          >
-            Login
-          </button>
+          <Button
+            name="Sign Up"
+            onClick={(e) => (formRef.current.name = "signup")}
+          />
         </div>
       </form>
     </Wrapper>
