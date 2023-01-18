@@ -1,6 +1,5 @@
 import Card from "../ui/Card";
 import Cookies from "js-cookie";
-import { useCurrentUser } from '../lib/hooks/useCurrentUser';
 
 export default function Page() {
 
@@ -17,7 +16,6 @@ export default function Page() {
       {Cookies.get("currentUser") && (
         <p className="text-2xl font-bold text-gray-300 text-center">
           You are logged in as
-          {useCurrentUser().user?.username.toUpperCase()}
         </p>
       )}
 

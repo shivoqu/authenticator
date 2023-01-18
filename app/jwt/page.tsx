@@ -4,26 +4,45 @@ import Message from "../../ui/Message";
 import UserForm from "../../ui/UserForm";
 import Wrapper from "../../ui/Wrapper";
 import Event from "../../ui/Event";
-import Cookies from "js-cookie";
-import { useCurrentUser } from "../../lib/hooks/useCurrentUser";
-import Button from '../../ui/Button';
+import Button from "../../ui/Button";
+import { CustomEvent } from "../../types/Event";
 
 export default function Jwt() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [token, setToken] = useState<string | null>(null);
+  const [username, setUsername] = useState<string | null>(null);
+  const [events, setEvents] = useState<CustomEvent[]>([]);
 
-  const login = (result: any) => {
-    setIsLoggedIn(true);
-    setToken(result.token.toString());
-    console.log(token);
-    Cookies.set("currentUser", JSON.stringify(result));
+  const addEvent = (
+    type: "GET" | "POST" | "PUT" | "DELETE",
+    message: string
+  ) => {
+    setEvents([...events, { id: events.length, type: type, message: message }]);
   };
 
-  const logout = () => {
-    setIsLoggedIn(false);
-    setToken(null);
-    Cookies.remove("currentUser");
-    console.warn(Cookies.get("currentUser"));
+  const login = (result: any) => {
+    setToken(result.token);
+    setUsername(result.username);
+    setIsLoggedIn(true);
+    addEvent("POST", `User logged in as ${result.username}`);
+  };
+
+  const logout = async () => {
+    const res = await fetch("/api/logout", {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify({}),
+    });
+    if (res.ok) {
+      setToken(null);
+      setIsLoggedIn(false);
+      setUsername(null);
+      addEvent("POST", `User ${username} logged out`);
+    } else {
+      console.log("res not ok", res);
+    }
   };
 
   return (
@@ -42,10 +61,9 @@ export default function Jwt() {
             <div className="h-96">
               <Message type="success">
                 Login token:
-                {/* {token?.slice(0, 32) + "..."} */}
                 <p>{token}</p>
               </Message>
-              <Button name='Logout' onClick={logout}/>
+              <Button name="Logout" onClick={logout} />
             </div>
           </Wrapper>
         )}
@@ -56,19 +74,13 @@ export default function Jwt() {
         </h1>
         <Wrapper>
           <div className="h-96 overflow-auto scrollbar scrollbar-thumb-neutral-700/50 scrollbar-thumb-rounded-md ">
-            { isLoggedIn }
-            <Event type="POST" message={"Logged in as " + useCurrentUser().user?.username}/>
-            {/* <Event type="GET" message="user by username" />
-            <Event type="delete" message="account by username and password" />
-            <Event type="PUT" message="update account details" />
-            <Event type="POST" message="signup with username and password" />
-            <Event type="GET" message="user by username" />
-            <Event type="delete" message="account by username and password" />
-            <Event type="PUT" message="update account details" />
-            <Event type="POST" message="signup with username and password" />
-            <Event type="GET" message="user by username" />
-            <Event type="delete" message="account by username and password" />
-            <Event type="PUT" message="update account details" /> */}
+            {events.length === 0 && (
+              <p className="text-gray-300 text-lg">Events will show up here</p>
+            )}
+
+            {events.map((event) => (
+              <Event key={event.id} type={event.type} message={event.message} />
+            ))}
           </div>
         </Wrapper>
       </div>

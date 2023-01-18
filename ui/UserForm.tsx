@@ -92,6 +92,16 @@ export default function UserForm({ handleLogin }: any) {
             onClick={() => (formRef.current.name = "login")}
           />
         </div>
+
+        <div className="relative my-4">
+          <div className="absolute inset-0 flex items-center">
+            <div className="w-full border-t border-gray-300"></div>
+          </div>
+          <div className="relative flex justify-center text-sm">
+            <p className="bg-neutral-900 px-2 text-gray-300">Or register a new account</p>
+          </div>
+        </div>
+
         <div className="flex w-full mb-2">
           <Button
             name="Sign Up"
