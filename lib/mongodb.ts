@@ -54,7 +54,7 @@ export async function login({
   const collection = db.collection("users");
 
   const user = await collection.findOne({ username });
-  if (!user) throw new Error("User not found");
+  if (!user) return false;
 
   if (!(await checkPassword(password, user.password))) return false;
 
