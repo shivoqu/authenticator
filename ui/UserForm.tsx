@@ -32,6 +32,7 @@ export default function UserForm({ handleLogin }: any) {
         },
         method: "POST",
       });
+
       const result = await res.json();
       (await result.error) ? setError(result.error) : setError(null);
 
@@ -43,7 +44,7 @@ export default function UserForm({ handleLogin }: any) {
 
   return (
     <Wrapper>
-      <form onSubmit={handleSubmit} className="h-96 " ref={formRef}>
+      <form onSubmit={handleSubmit} className="h-[27rem]" ref={formRef}>
         <h2 className="text-2xl text-center text-gray-300 font-bold">
           Sign In
         </h2>
@@ -89,7 +90,9 @@ export default function UserForm({ handleLogin }: any) {
         <div className="flex mt-8 w-full mb-2">
           <Button
             name="Login"
-            onClick={() => (formRef.current.name = "login")}
+            onClick={() => {
+              formRef.current.name = "login";
+            }}
           />
         </div>
 
@@ -98,14 +101,18 @@ export default function UserForm({ handleLogin }: any) {
             <div className="w-full border-t border-gray-300"></div>
           </div>
           <div className="relative flex justify-center text-sm">
-            <p className="bg-neutral-900 px-2 text-gray-300">Or register a new account</p>
+            <p className="bg-neutral-900 px-2 text-gray-300">
+              Or register a new account
+            </p>
           </div>
         </div>
 
         <div className="flex w-full mb-2">
           <Button
             name="Sign Up"
-            onClick={(e) => (formRef.current.name = "signup")}
+            onClick={() => {
+              formRef.current.name = "signup";
+            }}
           />
         </div>
       </form>

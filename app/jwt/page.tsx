@@ -9,7 +9,7 @@ import { CustomEvent } from "../../types/Event";
 
 export default function Jwt() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [token, setToken] = useState<string | null>(null);
+  const [token, setToken] = useState<string | null>("asdlasdklasjdaslkdjaklsjdlaskdjaklsd");
   const [username, setUsername] = useState<string | null>(null);
   const [events, setEvents] = useState<CustomEvent[]>([]);
 
@@ -46,44 +46,16 @@ export default function Jwt() {
   };
 
   return (
-    <section
-      style={{ marginTop: "-4rem" }}
-      className="flex justify-center h-screen items-center"
-    >
-      <div className="left">
-        <h1 className="text-center text-gray-300 font-bold text-3xl">
-          JWT Authentication
-        </h1>
-        {!isLoggedIn && <UserForm handleLogin={login} />}
-
-        {isLoggedIn && (
-          <Wrapper>
-            <div className="h-96">
-              <Message type="success">
-                Login token:
-                <p>{token}</p>
-              </Message>
-              <Button name="Logout" onClick={logout} />
-            </div>
-          </Wrapper>
-        )}
+    <Wrapper>
+      <div className="h-[27rem] flex flex-col w-full">
+        <Button name="Logout" onClick={logout} />
+        <div className="mt-auto">
+          <Message type="success">
+            <h3 className="text-lg ">Access token:</h3>
+            <p>{token}</p>
+          </Message>
+        </div>
       </div>
-      <div className="right">
-        <h1 className="text-3xl font-bold text-gray-300 text-center">
-          Event Log
-        </h1>
-        <Wrapper>
-          <div className="h-96 overflow-auto scrollbar scrollbar-thumb-neutral-700/50 scrollbar-thumb-rounded-md ">
-            {events.length === 0 && (
-              <p className="text-gray-300 text-lg">Events will show up here</p>
-            )}
-
-            {events.map((event) => (
-              <Event key={event.id} type={event.type} message={event.message} />
-            ))}
-          </div>
-        </Wrapper>
-      </div>
-    </section>
+    </Wrapper>
   );
 }
