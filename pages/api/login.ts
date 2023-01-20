@@ -23,7 +23,7 @@ export default async function handler(
 
     res.setHeader(
       "Set-Cookie",
-      cookie.serialize("access-token", token, {
+      cookie.serialize("jwtAuth", token, {
         httpOnly: true,
         secure: process.env.NODE_ENV !== "development",
         sameSite: "strict",
