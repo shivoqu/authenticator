@@ -1,19 +1,22 @@
-import { NextApiResponse } from "next";
-import { NextRequest } from "next/server";
-const jwt = require("jsonwebtoken");
+import { NextRequest, NextResponse } from "next/server";
+import { protectedRoutes, authRoutes } from "./lib/routes";
+export function middleware(req: NextRequest) {
+  const user = req.cookies.get("jwtAuth");
 
-export const middleware = (req: NextRequest, res: NextApiResponse) => {
-  const jwtToken = req.cookies.get("jwtAuth")?.value;
+  if (protectedRoutes.includes(req.nextUrl.pathname) && !user) {
+    console.log(req.nextUrl.pathname);
+    console.log(req.nextUrl);
+    console.log(req.url);
 
-  if (!jwtToken) {
-    return res.status(401).json({ error: "Not authorized" });
-  }
-
-  try {
-    const payload = jwt.verify(jwtToken, process.env.JWT_SECRET );
-    console.log(payload);
     
-  } catch (err) {
-    return res.status(401).json({ error: "Not authorized" });
+    req.cookies.delete("jwtAuth");
+    const res = NextResponse.redirect(new URL(req.nextUrl.pathname + "/login", req.url));
+    res.cookies.delete("jwtAuth");
+
+    return res;
   }
-};
+
+  if (authRoutes.includes(req.nextUrl.pathname) && user) {
+    return NextResponse.redirect(new URL("/jwt", req.url));
+  }
+}
