@@ -1,15 +1,15 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Message from "../../ui/Message";
-import UserForm from "../../ui/UserForm";
 import Wrapper from "../../ui/Wrapper";
 import Event from "../../ui/Event";
 import Button from "../../ui/Button";
 import { CustomEvent } from "../../types/Event";
 
 export default function Jwt() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [token, setToken] = useState<string | null>("asdlasdklasjdaslkdjaklsjdlaskdjaklsd");
+  const [token, setToken] = useState<string | null>(
+    "to-do: display token here"
+  );
   const [username, setUsername] = useState<string | null>(null);
   const [events, setEvents] = useState<CustomEvent[]>([]);
 
@@ -20,12 +20,25 @@ export default function Jwt() {
     setEvents([...events, { id: events.length, type: type, message: message }]);
   };
 
-  const login = (result: any) => {
-    setToken(result.token);
-    setUsername(result.username);
-    setIsLoggedIn(true);
-    addEvent("POST", `User logged in as ${result.username}`);
-  };
+  useEffect(() => {
+    const fetchUser = async () => {
+      const res = await fetch("/api/user", {
+        method: "GET",
+        headers: {
+          "Content-type": "application/json",
+        },
+      });
+      if (res.ok) {
+        const result = await res.json();
+        setUsername(result.user.username);
+        setToken(result.jwtAuth);
+        addEvent("GET", `User ${result.username} fetched`);
+      } else {
+        console.log("res not ok", res.json());
+      }
+    };
+    fetchUser();
+  }, []);
 
   const logout = async () => {
     const res = await fetch("/api/logout", {
@@ -37,13 +50,18 @@ export default function Jwt() {
     });
     if (res.ok) {
       setToken(null);
-      setIsLoggedIn(false);
       setUsername(null);
       addEvent("POST", `User ${username} logged out`);
     } else {
       console.log("res not ok", res);
     }
   };
+
+  const colorMap = new Map([
+    [0, "red-500"],
+    [1, "blue-500"],
+    [2, "yellow-500"],
+  ]);
 
   return (
     <Wrapper>
@@ -52,7 +70,9 @@ export default function Jwt() {
         <div className="mt-auto">
           <Message type="success">
             <h3 className="text-lg ">Access token:</h3>
-            <p>{token}</p>
+            {token?.split(".").map((item, index) => (
+              <p className={'text-' + colorMap.get(index)} key={index}>{item}</p>
+            ))}
           </Message>
         </div>
       </div>

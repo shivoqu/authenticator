@@ -60,3 +60,15 @@ export async function login({
 
   return user;
 }
+
+export async function getUser(username: string) {
+  const client = await clientPromise;
+  const db = client.db("nextjs-auth");
+  const collection = db.collection("users");
+
+  const user = await collection.findOne({ username });
+
+  if (!user) return false;
+
+  return user;
+}

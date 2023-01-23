@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import Button from "./Button";
 import Message from "./Message";
 import Wrapper from "./Wrapper";
+import jwt from "jsonwebtoken";
 
 export default function UserForm({ handleLogin }: any) {
   const formRef = useRef<any>();
@@ -30,10 +31,13 @@ export default function UserForm({ handleLogin }: any) {
         headers: {
           "Content-type": "application/json",
         },
+        credentials: "include",
         method: "POST",
       });
 
       const result = await res.json();
+      console.warn(jwt.decode(result.token));
+      
       (await result.error) ? setError(result.error) : setError(null);
 
       if (!result.error) {
@@ -44,7 +48,7 @@ export default function UserForm({ handleLogin }: any) {
 
   return (
     <Wrapper>
-      <form onSubmit={handleSubmit} className="h-[27rem]" ref={formRef}>
+      <form onSubmit={handleSubmit} className="h-[27rem]" ref={formRef} method="POST">
         <h2 className="text-2xl text-center text-gray-300 font-bold">
           Sign In
         </h2>

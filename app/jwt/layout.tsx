@@ -1,30 +1,33 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "../../ui/Button";
 import Message from "../../ui/Message";
-import UserForm from "../../ui/UserForm";
 import Wrapper from "../../ui/Wrapper";
 import Event from "../../ui/Event";
 import { CustomEvent } from "../../types/Event";
+import { NextPage } from "next";
 
-export default function Layout({ children }: { children: React.ReactNode }) {
+const Layout: NextPage<any> = ({
+  children,
+  cookie,
+}: {
+  children: React.ReactNode;
+  cookie: any;
+}) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [token, setToken] = useState<string | null>(null);
   const [username, setUsername] = useState<string | null>(null);
   const [events, setEvents] = useState<CustomEvent[]>([]);
+
+  useEffect(() => {      
+    console.log("cookie", cookie);
+  }, [cookie]);
 
   const addEvent = (
     type: "GET" | "POST" | "PUT" | "DELETE",
     message: string
   ) => {
     setEvents([...events, { id: events.length, type: type, message: message }]);
-  };
-
-  const login = (result: any) => {
-    setToken(result.token);
-    setUsername(result.username);
-    setIsLoggedIn(true);
-    addEvent("POST", `User logged in as ${result.username}`);
   };
 
   const logout = async () => {
@@ -54,7 +57,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <h1 className="text-center text-gray-300 font-bold text-3xl">
           JWT Authentication
         </h1>
-        {/* {!isLoggedIn && <UserForm handleLogin={login} />} */}
+
         {children}
 
         {isLoggedIn && (
@@ -87,4 +90,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       </div>
     </section>
   );
-}
+};
+
+export default Layout;

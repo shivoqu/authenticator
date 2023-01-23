@@ -19,7 +19,7 @@ export default async function handler(
   const isLoggedIn = await login({ username, password });
 
   if (isLoggedIn) {
-    const expIn = "15m";
+    const expIn = "7d";
     const token : string = jwt.sign({ username }, secret, { expiresIn: expIn });
 
     res.setHeader(
@@ -28,7 +28,7 @@ export default async function handler(
         httpOnly: true,
         secure: process.env.NODE_ENV !== "development",
         sameSite: "strict",
-        maxAge: 60 * 15,
+        maxAge: 60 * 60 * 24 * 7,
         path: "/",
       })
     );
