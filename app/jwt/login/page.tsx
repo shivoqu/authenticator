@@ -18,7 +18,8 @@ export default function Login() {
 
   const login = (result: any) => {
     addEvent("POST", `User logged in as ${result.username}`);
-    localStorage.setItem("user", result.user);
+    localStorage.setItem("user", JSON.stringify(result.user));
+    localStorage.setItem("jwtAuth", result.token);
     router.refresh();
   };
 

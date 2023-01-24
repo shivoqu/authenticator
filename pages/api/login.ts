@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { getUser, login } from "../../lib/mongodb";
+import { login } from "../../lib/mongodb";
 import cookie from "cookie";
 
 const jwt = require("jsonwebtoken");

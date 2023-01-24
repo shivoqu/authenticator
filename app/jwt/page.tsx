@@ -23,23 +23,11 @@ export default function Jwt() {
   };
 
   useEffect(() => {
-    const fetchUser = async () => {
-      const res = await fetch("/api/user", {
-        method: "GET",
-        headers: {
-          "Content-type": "application/json",
-        },
-      });
-      if (res.ok) {
-        const result = await res.json();
-        setUsername(result.user.username);
-        setToken(result.jwtAuth);
-        addEvent("GET", `User ${result.username} fetched`);
-      } else {
-        console.log("res not ok", res.json());
-      }
-    };
-    fetchUser();
+    const user = JSON.parse(localStorage.getItem("user") || "");
+    const jwtAuth = localStorage.getItem("jwtAuth");
+    setUsername(user?.username);
+    setToken(jwtAuth);
+    console.log(jwtAuth);
   }, []);
 
   const logout = async () => {
@@ -55,7 +43,8 @@ export default function Jwt() {
       setUsername(null);
       addEvent("POST", `User ${username} logged out`);
       router.refresh();
-    } 
+      localStorage.clear();
+    }
   };
 
   const colorMap = new Map([
@@ -72,7 +61,9 @@ export default function Jwt() {
           <Message type="success">
             <h3 className="text-lg ">Access token:</h3>
             {token?.split(".").map((item, index) => (
-              <p className={'text-' + colorMap.get(index)} key={index}>{item}</p>
+              <p className={"text-" + colorMap.get(index)} key={index}>
+                {item}
+              </p>
             ))}
           </Message>
         </div>
