@@ -2,9 +2,9 @@
 import { useState, useEffect } from "react";
 import Message from "../../ui/Message";
 import Wrapper from "../../ui/Wrapper";
-import Event from "../../ui/Event";
 import Button from "../../ui/Button";
 import { CustomEvent } from "../../types/Event";
+import { useRouter } from "next/navigation";
 
 export default function Jwt() {
   const [token, setToken] = useState<string | null>(
@@ -12,6 +12,8 @@ export default function Jwt() {
   );
   const [username, setUsername] = useState<string | null>(null);
   const [events, setEvents] = useState<CustomEvent[]>([]);
+
+  const router = useRouter();
 
   const addEvent = (
     type: "GET" | "POST" | "PUT" | "DELETE",
@@ -52,9 +54,8 @@ export default function Jwt() {
       setToken(null);
       setUsername(null);
       addEvent("POST", `User ${username} logged out`);
-    } else {
-      console.log("res not ok", res);
-    }
+      router.refresh();
+    } 
   };
 
   const colorMap = new Map([

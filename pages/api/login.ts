@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { login } from "../../lib/mongodb";
+import { getUser, login } from "../../lib/mongodb";
 import cookie from "cookie";
 
 const jwt = require("jsonwebtoken");
@@ -16,9 +16,9 @@ export default async function handler(
 
   const { username, password } = req.body;
 
-  const isLoggedIn = await login({ username, password });
+  const user = await login({ username, password });
 
-  if (isLoggedIn) {
+  if (user) {
     const expIn = "7d";
     const token : string = jwt.sign({ username }, secret, { expiresIn: expIn });
 
@@ -31,8 +31,8 @@ export default async function handler(
         maxAge: 60 * 60 * 24 * 7,
         path: "/",
       })
-    );
+    );      
 
-    res.status(200).json({ username, token, expiresIn: expIn });
+    res.status(200).json({ user, token, expiresIn: expIn });
   } else res.status(401).json({ error: "Invalid username or password" });
 }
