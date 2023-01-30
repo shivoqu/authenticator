@@ -62,6 +62,9 @@ export default function Jwt() {
             <h3 className="text-lg ">Access token:</h3>
             {token?.split(".").map((item, index) => (
               <p className={"text-" + colorMap.get(index)} key={index}>
+                {index!==0&&
+                <span className="text-white">.</span>
+                }
                 {item}
               </p>
             ))}
