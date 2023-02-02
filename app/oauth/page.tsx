@@ -1,8 +1,6 @@
+import Dev from "../../ui/Dev";
+
 export default async function Page() {
-    return (
-        <div>
-            <h1>Page</h1>
-        </div>
-    )
+    return <Dev />
 }
 
