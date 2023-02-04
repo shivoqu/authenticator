@@ -19,47 +19,47 @@ export default function Playground() {
     setItems([...items, { name: item, id: id }]);
     setItem("");
     setId(id + 1);
-    console.log("added", item);
   };
 
   const removeItem = (id: number) => {
     setItems(items.filter((item) => item.id !== id));
-    console.log("removed", id);
   };
 
   return (
     <Wrapper>
-      <div className="h-[27rem]">
-        <ul>
+      <div className="h-[27rem] overflow-auto scrollbar scrollbar-thumb-neutral-700/50 scrollbar-thumb-rounded-md ">
+        <div className="mb-4 flex w-full pb-2 border-b border-gray-500 ">
+          <div className="w-full mr-auto">
+            <label className="block text-gray-300 text-md font-medium">
+              <input
+                className="bg-neutral-800/50 focus:bg-neutral-700/50
+                shadow border text-md border-gray-300/50 rounded-md h-12
+                px-4 py-3 w-full text-gray-200 leading-tight focus:border-transparent"
+                type="text"
+                name="itemName"
+                placeholder={food[Math.floor(Math.random() * 31)]}
+                required
+                value={item}
+                onChange={(e) => {
+                  setItem(e.target.value);
+                }}
+              />
+            </label>
+          </div>
+
+          <div className="ml-1 h-full flex items-center justify-center">
+            <SecondaryButton name="+" onClick={() => addItem(item)} />
+          </div>
+        </div>
+
+        <ul className="mx-4">
           {items.map((item) => (
-            <li key={item.id} className="flex w-full mb-2">
-              <span className="text-md text-white mr-auto">{item.name}</span>
+            <li key={item.id} className="flex w-full mb-2 animate-fade-in-down">
+              <span className="text-md flex flex-start items-center text-white mr-auto">{item.name}</span>
               <SecondaryButton name="-" onClick={() => removeItem(item.id)} />
             </li>
           ))}
         </ul>
-
-        <div className="mb-4">
-          <label
-            className="block text-gray-300 text-md font-medium mb-2"
-            htmlFor="username"
-          ></label>
-          <input
-            className="bg-neutral-800/50 focus:bg-neutral-700/50
-            shadow border text-md border-gray-300/50 rounded-md 
-            px-4 py-3 w-full text-gray-300 leading-tight focus:border-transparent"
-            type="text"
-            name="itemName"
-            placeholder={food[Math.floor(Math.random() * 31)]}
-            required
-            value={item}
-            onChange={(e) => {
-              setItem(e.target.value);
-            }}
-          />
-        </div>
-
-        <SecondaryButton name="+" onClick={() => addItem(item)} />
       </div>
     </Wrapper>
   );
