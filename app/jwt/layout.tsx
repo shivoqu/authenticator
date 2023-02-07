@@ -1,11 +1,12 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Button from "../../ui/Button";
 import Message from "../../ui/Message";
 import Wrapper from "../../ui/Wrapper";
 import Event from "../../ui/Event";
 import { CustomEvent } from "../../types/Event";
 import { NextPage } from "next";
+import UserContext from "../../lib/user";
 
 const Layout: NextPage<any> = ({
   children,
@@ -48,11 +49,14 @@ const Layout: NextPage<any> = ({
     }
   };
 
+  const consumedUser = useContext(UserContext);
+
   return (
     <section
       style={{ marginTop: "-4rem" }}
       className="flex justify-center h-screen items-center"
     >
+      <p>{consumedUser.user}</p>
       <div className="left">
         <h1 className="text-center text-gray-300 font-bold text-3xl">
           JWT Authentication

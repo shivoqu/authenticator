@@ -29,12 +29,12 @@ export default function Playground() {
     <Wrapper>
       <div className="h-[27rem] overflow-auto scrollbar scrollbar-thumb-neutral-700/50 scrollbar-thumb-rounded-md ">
         <div className="mb-4 flex w-full pb-2 border-b border-gray-500 ">
-          <div className="w-full mr-auto">
+          <div className="w-full ">
             <label className="block text-gray-300 text-md font-medium">
               <input
                 className="bg-neutral-800/50 focus:bg-neutral-700/50
                 shadow border text-md border-gray-300/50 rounded-md h-12
-                px-4 py-3 w-full text-gray-200 leading-tight focus:border-transparent"
+                px-4 py-3 w-full text-gray-200 leading-tight focus:border-gray-200 focus:outline-none"
                 type="text"
                 name="itemName"
                 placeholder={food[Math.floor(Math.random() * 31)]}
