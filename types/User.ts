@@ -1,5 +1,4 @@
-export interface User { 
-    token: string;
-    username: string;
-    expiresIn: string;
-};
+export interface User {
+    name: string;
+    auth: string;
+}

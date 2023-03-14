@@ -1,5 +1,4 @@
 import Card from "../ui/Card";
-import Cookies from "js-cookie";
 
 export default function Page() {
 
@@ -13,25 +12,14 @@ export default function Page() {
           Authenticator
         </p>
       </section>
-      {Cookies.get("currentUser") && (
-        <p className="text-2xl font-bold text-gray-300 text-center">
-          You are logged in as
-        </p>
-      )}
-
-      {!Cookies.get("currentUser") && (
-        <p className="text-2xl font-bold text-gray-300 text-center">
-          You are not logged in
-        </p>
-      )}
 
       <section
         className="flex flex-wrap  
-          mx-auto mt-56 mb-56
-          items-center justify-center 
-          large:max-w-2xl 
-          medium:max-w-lg  
-          small:max-w-md"
+        mx-auto mt-56 mb-56
+        items-center justify-center 
+        large:max-w-2xl 
+        medium:max-w-lg  
+        small:max-w-md"
       >
         <Card
           title="JWT"

@@ -1,8 +1,9 @@
 "use client";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Wrapper from "../../../ui/Wrapper";
 import SecondaryButton from "../../../ui/SecondaryButton";
 import { food } from "../../../lib/res/food";
+import UserContext from "../../../lib/res/context/user";
 
 interface Item {
   id: number;
@@ -24,6 +25,9 @@ export default function Playground() {
   const removeItem = (id: number) => {
     setItems(items.filter((item) => item.id !== id));
   };
+
+  const consumedUser = useContext(UserContext);
+  console.log("consumedUser", consumedUser);
 
   return (
     <Wrapper>

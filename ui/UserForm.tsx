@@ -36,7 +36,6 @@ export default function UserForm({ handleLogin }: any) {
       });
 
       const result = await res.json();
-      console.warn(jwt.decode(result.token));
       
       (await result.error) ? setError(result.error) : setError(null);
 

@@ -1,17 +1,19 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from 'react';
 import Message from "../../ui/Message";
 import Wrapper from "../../ui/Wrapper";
 import Button from "../../ui/Button";
 import { CustomEvent } from "../../types/Event";
 import { useRouter } from "next/navigation";
+import UserContext from '../../lib/res/context/user';
+import EventsContext from '../../lib/res/context/event';
 
 export default function Jwt() {
-  const [token, setToken] = useState<string | null>(
-    "to-do: display token here"
-  );
+  const [token, setToken] = useState<string | null>(null);
   const [username, setUsername] = useState<string | null>(null);
-  const [events, setEvents] = useState<CustomEvent[]>([]);
+  // const [events, setEvents] = useState<CustomEvent[]>([]);
+
+  const { events, setEvents } = useContext(EventsContext);
 
   const router = useRouter();
 
@@ -23,11 +25,18 @@ export default function Jwt() {
   };
 
   useEffect(() => {
-    const user = JSON.parse(localStorage.getItem("user") || "");
-    const jwtAuth = localStorage.getItem("jwtAuth");
-    setUsername(user?.username);
-    setToken(jwtAuth);
-    console.log(jwtAuth);
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) {
+      const { expiresAt, token, username } = JSON.parse(storedUser);
+      if (expiresAt && Date.now() > expiresAt) {
+        localStorage.removeItem('user');
+        setUsername(null);
+        setToken(null);
+      } else {
+        setUsername(username);
+        setToken(token);
+      }
+    }
   }, []);
 
   const logout = async () => {
@@ -62,9 +71,7 @@ export default function Jwt() {
             <h3 className="text-lg ">Access token:</h3>
             {token?.split(".").map((item, index) => (
               <p className={"text-" + colorMap.get(index)} key={index}>
-                {index!==0&&
-                <span className="text-white">.</span>
-                }
+                {index !== 0 && <span className="text-white">.</span>}
                 {item}
               </p>
             ))}

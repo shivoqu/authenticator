@@ -33,6 +33,9 @@ export default async function handler(
       })
     );      
 
-    res.status(200).json({ user, token, expiresIn: expIn });
+    const expDate = new Date();
+    expDate.setMinutes(expDate.getMinutes() + 15);
+
+    res.status(200).json({ username, token, expiresAt: expDate });
   } else res.status(401).json({ error: "Invalid username or password" });
 }

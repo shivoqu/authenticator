@@ -10,7 +10,7 @@ export default function Loading() {
     } else {
       setDots(1);
     }
-  }, 500);
+  }, 1000);
 
   return (
     <div className="h-screen w-screen flex align-center justify-center ">
