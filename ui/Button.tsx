@@ -1,8 +1,10 @@
+import { ReactNode } from "react";
+
 const Button = ({
-  name,
+  children,
   onClick,
 }: {
-  name: string;
+  children : ReactNode,
   onClick: React.MouseEventHandler<HTMLButtonElement>;
 }) => {
   return (
@@ -13,10 +15,9 @@ const Button = ({
   hover:from-red-900 hover:via-red-900 hover:to-red-700
   text-white rounded-md outline-offset-0  focus:outline-red-200"
       type="submit"
-      name={name.toLowerCase()}
       onClick={onClick}
     >
-      {name}
+      {children}
     </button>
   );
 };

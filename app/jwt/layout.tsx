@@ -16,15 +16,6 @@ const Layout: NextPage<any> = ({ children }: { children: React.ReactNode }) => {
   const [events, setEvents] = useState<CustomEvent[]>([]);
   const [user, setUser] = useState<User | null>(null);
 
-  // const addEvent = (
-  //   type: "GET" | "POST" | "PUT" | "DELETE",
-  //   message: string
-  // ) => {
-  //   console.log('adding a ' + type + ' event');
-    
-  //   setEvents([...events, { id: events.length, type: type, message: message }]);
-  // };
-
   const logout = async () => {
     const res = await fetch("/api/logout", {
       method: "POST",
@@ -64,7 +55,7 @@ const Layout: NextPage<any> = ({ children }: { children: React.ReactNode }) => {
                   Login token:
                   <p>{token}</p>
                 </Message>
-                <Button name="Logout" onClick={logout} />
+                <Button onClick={logout} >Logout</Button>
               </div>
             </Wrapper>
           )}

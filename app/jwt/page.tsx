@@ -65,7 +65,7 @@ export default function Jwt() {
   return (
     <Wrapper>
       <div className="h-[27rem] flex flex-col w-full">
-        <Button name="Logout" onClick={logout} />
+        <Button onClick={logout}>Logout</Button>
         <div className="mt-auto">
           <Message type="success">
             <h3 className="text-lg ">Access token:</h3>
