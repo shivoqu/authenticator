@@ -5,7 +5,7 @@ const Button = ({
   onClick,
 }: {
   children : ReactNode,
-  onClick: React.MouseEventHandler<HTMLButtonElement>;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
 }) => {
   return (
     <button

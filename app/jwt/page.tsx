@@ -66,14 +66,19 @@ export default function Jwt() {
     <Wrapper>
       <div className="h-[27rem] flex flex-col w-full">
         <Button onClick={logout}>Logout</Button>
+        <div className="my-2 gap-1 grid grid-cols-2 g-1">
+          <Button>Create</Button>
+          <Button>Update</Button>
+        </div>
+          <Button>Delete</Button>
         <div className="mt-auto">
           <Message type="success">
             <h3 className="text-lg ">Access token:</h3>
             {token?.split(".").map((item, index) => (
-              <p className={"text-" + colorMap.get(index)} key={index}>
+              <span className={"text-" + colorMap.get(index)} key={index}>
                 {index !== 0 && <span className="text-white">.</span>}
                 {item}
-              </p>
+              </span>
             ))}
           </Message>
         </div>
