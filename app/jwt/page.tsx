@@ -1,12 +1,12 @@
 "use client";
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect, useContext } from "react";
 import Message from "../../ui/Message";
 import Wrapper from "../../ui/Wrapper";
 import Button from "../../ui/Button";
 import { CustomEvent } from "../../types/Event";
 import { useRouter } from "next/navigation";
-import UserContext from '../../lib/res/context/user';
-import EventsContext from '../../lib/res/context/event';
+import UserContext from "../../lib/res/context/user";
+import EventsContext from "../../lib/res/context/event";
 
 export default function Jwt() {
   const [token, setToken] = useState<string | null>(null);
@@ -25,11 +25,11 @@ export default function Jwt() {
   };
 
   useEffect(() => {
-    const storedUser = localStorage.getItem('user');
+    const storedUser = localStorage.getItem("user");
     if (storedUser) {
       const { expiresAt, token, username } = JSON.parse(storedUser);
       if (expiresAt && Date.now() > expiresAt) {
-        localStorage.removeItem('user');
+        localStorage.removeItem("user");
         setUsername(null);
         setToken(null);
       } else {
@@ -65,12 +65,14 @@ export default function Jwt() {
   return (
     <Wrapper>
       <div className="h-[27rem] flex flex-col w-full">
-        <Button onClick={logout}>Logout</Button>
         <div className="my-2 gap-1 grid grid-cols-2 g-1">
-          <Button>Create</Button>
-          <Button>Update</Button>
+          <Button type="secondary">Create</Button>
+          <Button type="secondary">Update</Button>
         </div>
-          <Button>Delete</Button>
+        <div className="flex flex-col gap-2">
+          <Button type="secondary">Delete</Button>
+          <Button onClick={logout}>Logout</Button>
+        </div>
         <div className="mt-auto">
           <Message type="success">
             <h3 className="text-lg ">Access token:</h3>
