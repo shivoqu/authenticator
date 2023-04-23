@@ -64,6 +64,11 @@ export default function Jwt() {
 
   // const create = () => {
 
+  const mockResponse = {
+    id: "1",
+    createdOn: "2022-01-01",
+    createdBy: "XXXXX",
+  };
 
   return (
     <Wrapper>
@@ -72,9 +77,17 @@ export default function Jwt() {
           <Button type="secondary">Create</Button>
           <Button type="secondary">Update</Button>
         </div>
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-2 h-28">
           <Button type="secondary">Delete</Button>
           <Button onClick={logout}>Logout</Button>
+        </div>
+        <div className="bg-neutral-900 p-3 text-neutral-300 font-semibold rounded border border-l-4 border-1 border-neutral-500 mt-2">
+          <ul className="inline-flex place-content-center gap-3 w-full">
+            <li>id: {mockResponse.id}</li>
+            <li>user: {mockResponse.createdBy}</li>
+            <li>date: {mockResponse.createdOn}</li>
+          </ul>
+          
         </div>
         <div className="mt-auto">
           <Message type="success">

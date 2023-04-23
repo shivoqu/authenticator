@@ -17,7 +17,7 @@ const Button = ({
         ? `text-white   focus:outline-red-200 hover:py-3 focus:py-3 
       bg-gradient-to-r from-red-700 via-red-900 font-bold to-red-900 
       hover:from-red-900 hover:via-red-900 hover:to-red-700`
-        : "text-neutral-50 font-semibold bg-neutral-800 hover:bg-neutral-700 focus:bg-neutral-700"
+        : "text-neutral-50 font-semibold bg-neutral-800 hover:bg-neutral-700"
     }  transition-all duration-100
     
    rounded-md outline-offset-0 `}
