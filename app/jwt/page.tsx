@@ -3,7 +3,6 @@ import { useState, useEffect, useContext } from "react";
 import Message from "../../ui/Message";
 import Wrapper from "../../ui/Wrapper";
 import Button from "../../ui/Button";
-import { CustomEvent } from "../../types/Event";
 import { useRouter } from "next/navigation";
 import UserContext from "../../lib/res/context/user";
 import EventsContext from "../../lib/res/context/event";
@@ -39,21 +38,22 @@ export default function Jwt() {
     }
   }, []);
 
-  const logout = async () => {
-    const res = await fetch("/api/logout", {
+  const logout = () => {
+    fetch("/api/logout", {
       method: "POST",
       headers: {
         "Content-type": "application/json",
       },
       body: JSON.stringify({}),
+    }).then((res) => {
+      if (res.ok) {
+        setToken(null);
+        setUsername(null);
+        addEvent("POST", `User ${username} logged out`);
+        router.refresh();
+        localStorage.clear();
+      }
     });
-    if (res.ok) {
-      setToken(null);
-      setUsername(null);
-      addEvent("POST", `User ${username} logged out`);
-      router.refresh();
-      localStorage.clear();
-    }
   };
 
   const colorMap = new Map([
@@ -61,6 +61,9 @@ export default function Jwt() {
     [1, "blue-500"],
     [2, "yellow-500"],
   ]);
+
+  // const create = () => {
+
 
   return (
     <Wrapper>

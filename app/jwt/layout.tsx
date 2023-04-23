@@ -16,23 +16,31 @@ const Layout: NextPage<any> = ({ children }: { children: React.ReactNode }) => {
   const [events, setEvents] = useState<CustomEvent[]>([]);
   const [user, setUser] = useState<User | null>(null);
 
-  const logout = async () => {
-    const res = await fetch("/api/logout", {
+  const logout = () => {
+    fetch("/api/logout", {
       method: "POST",
       headers: {
         "Content-type": "application/json",
       },
       body: JSON.stringify({}),
+    }).then((res) => {
+      if (res.ok) {
+        setToken(null);
+        setIsLoggedIn(false);
+        // addEvent("POST", `User ${user?.name} logged out`);
+        setEvents([
+          ...events,
+          {
+            id: events.length,
+            type: "POST",
+            message: `User ${user?.name} logged out`,
+          },
+        ]);
+        setUser(null);
+      } else {
+        console.log("res not ok", res);
+      }
     });
-    if (res.ok) {
-      setToken(null);
-      setIsLoggedIn(false);
-      // addEvent("POST", `User ${user?.name} logged out`);
-      setEvents([...events, { id: events.length, type: "POST", message: `User ${user?.name} logged out` }]);
-      setUser(null);
-    } else {
-      console.log("res not ok", res);
-    }
   };
 
   return (
@@ -55,7 +63,7 @@ const Layout: NextPage<any> = ({ children }: { children: React.ReactNode }) => {
                   Login token:
                   <p>{token}</p>
                 </Message>
-                <Button onClick={logout} >Logout</Button>
+                <Button onClick={logout}>Logout</Button>
               </div>
             </Wrapper>
           )}
