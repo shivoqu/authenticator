@@ -24,7 +24,7 @@ export default function Login() {
   };
 
   const login = (result: any) => {
-    
+  
     localStorage.setItem("user", JSON.stringify(result) );
     localStorage.setItem("auth", JSON.stringify({method: "jwt", token: result.token}));  
     

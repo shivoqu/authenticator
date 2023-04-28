@@ -47,7 +47,7 @@ const Layout: NextPage<any> = ({ children }: { children: React.ReactNode }) => {
     <EventsContext.Provider value={{ events, setEvents }}>
       <section
         style={{ marginTop: "-4rem" }}
-        className="flex justify-center h-screen items-center"
+        className="flex justify-center items-center"
       >
         <div className="left">
           <h1 className="text-center text-gray-300 font-bold text-3xl">
